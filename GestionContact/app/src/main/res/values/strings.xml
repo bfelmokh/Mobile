@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GestionContacts</string>
+    <string name="titre">Authentification</string>
+    <string name="titreAccueil">Accueil de M.</string>
+</resources>
