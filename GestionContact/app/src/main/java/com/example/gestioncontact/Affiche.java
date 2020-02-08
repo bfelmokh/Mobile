@@ -15,7 +15,10 @@ public class Affiche extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affiche);
         lvc = findViewById(R.id.lv_contact);
-        ArrayAdapter ad = new ArrayAdapter(Affiche.this,android.R.layout.simple_list_item_1,Accueil.data);
+        //ArrayAdapter ad = new ArrayAdapter(Affiche.this,android.R.layout.simple_list_item_1,Accueil.data);
+        //lvc.setAdapter(ad);
+
+        MonAdapter ad = new MonAdapter(Affiche.this, Accueil.data);
         lvc.setAdapter(ad);
     }
 

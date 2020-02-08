@@ -38,6 +38,7 @@ public class Ajout extends AppCompatActivity implements View.OnClickListener {
             String prenom = tprenom.getText().toString();
             String numero = tnumero.getText().toString();
             Accueil.data.add(new Contact(nom,prenom,numero));
+            Toast.makeText(this, "Added", Toast.LENGTH_LONG).show();
         }
     }
 }

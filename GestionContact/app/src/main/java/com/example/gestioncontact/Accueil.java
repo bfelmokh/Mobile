@@ -39,7 +39,6 @@ public class Accueil extends AppCompatActivity implements View.OnClickListener {
                 startActivity(i);
             }
         });
-
     }
 
     @Override
