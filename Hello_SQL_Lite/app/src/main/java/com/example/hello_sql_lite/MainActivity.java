@@ -27,38 +27,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Déclaration d'une base
-        // si on modifie la version ==> appel implicite à onUpgrade
-        MyHelper helper = new MyHelper(MainActivity.this,"base.db",null,1);
+        PositionManager pm = new PositionManager(MainActivity.this);
+        pm.ouvrir();
+        pm.inserer("1.12345","5.54321");
 
-        // Permet d'ouvrir la base si elle existe, sinon elle crée le fichier et fait l'appel implicit pour l'onCreate afin de crée la base.
-        SQLiteDatabase db = helper.getWritableDatabase();
 
-        // Prepare insert
-        ContentValues v = new ContentValues();
-        v.put(MyHelper.col_long,"1.12345");
-        v.put(MyHelper.col_lat,"6.54321");
-        // Insert
-        db.insert(MyHelper.table_pos,null,v);
-
-        // Selection depuis la base
-        //db = helper.getReadableDatabase();
-        Cursor cr = db.query(MyHelper.table_pos,new String[]{MyHelper.col_id,MyHelper.col_long,MyHelper.col_lat},null,null,null,null,null);
+        // affichage list view
         ListView lv = findViewById(R.id.lv);
-        // Conversion d'un cursor à une arrayList Data
-        ArrayList data = new ArrayList();
-        cr.moveToFirst();
-        int i1;
-        String i2,i3;
-        while (!cr.isAfterLast()){
-            i1 = cr.getInt(0);
-            i2 = cr.getString(1);
-            i3 = cr.getString(2);
-            data.add(i1+" "+i2+" "+i3);
-            cr.moveToNext();
-        }
-
-        ArrayAdapter ad = new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,data);
+        ArrayAdapter ad = new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,pm.selectionnertout());
         lv.setAdapter(ad);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
