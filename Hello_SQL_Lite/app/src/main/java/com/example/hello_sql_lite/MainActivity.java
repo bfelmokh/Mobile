@@ -48,15 +48,14 @@ public class MainActivity extends AppCompatActivity {
         // Conversion d'un cursor à une arrayList Data
         ArrayList data = new ArrayList();
         cr.moveToFirst();
-        int i1 = cr.getInt(0);
-        String i2 = cr.getString(1);
-        String i3 = cr.getString(2);
-        data.add(i1+" "+i2+" "+i3);
-        while (cr.moveToNext()){
+        int i1;
+        String i2,i3;
+        while (!cr.isAfterLast()){
             i1 = cr.getInt(0);
             i2 = cr.getString(1);
             i3 = cr.getString(2);
             data.add(i1+" "+i2+" "+i3);
+            cr.moveToNext();
         }
 
         ArrayAdapter ad = new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,data);
