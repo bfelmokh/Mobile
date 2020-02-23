@@ -33,6 +33,9 @@ public class PositionManager {
         // Insert
         db.insert(MyHelper.table_pos,null,v);
     }
+    public void update(){
+        //db.update("");
+    }
     public ArrayList selectionnertout(){
         // Selection depuis la base
         //db = helper.getReadableDatabase();
