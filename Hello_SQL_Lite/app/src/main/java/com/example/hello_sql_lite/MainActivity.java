@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         PositionManager pm = new PositionManager(MainActivity.this);
-        pm.ouvrir();
+        pm.ouvrir("base.db");
         pm.inserer("1.12345","5.54321");
 
 

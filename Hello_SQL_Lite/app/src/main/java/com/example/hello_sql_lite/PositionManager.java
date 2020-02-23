@@ -16,10 +16,10 @@ public class PositionManager {
         this.con = con;
     }
 
-    public void ouvrir(){
+    public void ouvrir(String fichier){
         // Déclaration d'une base
         // si on modifie la version ==> appel implicite à onUpgrade
-        MyHelper helper = new MyHelper(con,"base.db",null,1);
+        MyHelper helper = new MyHelper(con, fichier, null,1);
 
         // Permet d'ouvrir la base si elle existe, sinon elle crée le fichier et fait l'appel implicit pour l'onCreate afin de crée la base.
         db = helper.getWritableDatabase();
