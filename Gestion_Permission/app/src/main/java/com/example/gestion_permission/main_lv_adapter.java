@@ -44,6 +44,7 @@ public class main_lv_adapter extends BaseAdapter {
         ll = (LinearLayout) li.inflate(R.layout.view,null);
         TextView item_tv = ll.findViewById(R.id.item_tv);
         Switch item_sw = ll.findViewById(R.id.item_sw);
+        //Bind ==> Modition de contenu
         item_tv.setText(al.get(position).getNom());
         item_sw.setChecked(al.get(position).isEtat());
         return ll;
