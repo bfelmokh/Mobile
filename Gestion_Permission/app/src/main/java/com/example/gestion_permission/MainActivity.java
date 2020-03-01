@@ -6,14 +6,21 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -37,10 +44,29 @@ public class MainActivity extends AppCompatActivity {
         //main_lv.setAdapter(ad);
         //*********
 
-        //********* 2er type ******** Context / data
+        //********* 2eme type ******** Context / data
         main_lv_adapter ad = new main_lv_adapter(MainActivity.this,data);
         main_lv.setAdapter(ad);
         //*********
+
+        //********* ItemListener de listview
+        main_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Builder alert = new Builder(MainActivity.this);
+                alert.setTitle("Edition");
+                LinearLayout ll;
+                LayoutInflater v = LayoutInflater.from(MainActivity.this);
+                // view.xml from R.layout,null
+                ll = (LinearLayout) v.inflate(R.layout.view,null);
+                TextView item_tv = ll.findViewById(R.id.item_tv);
+                Switch item_sw = ll.findViewById(R.id.item_sw);
+                item_tv.setText(data.get(position).getNom());
+                item_sw.setChecked(data.get(position).isEtat());
+                alert.setView(item_tv);
+                alert.show();
+            }
+        });
 
         setSupportActionBar(toolbar);
 
@@ -48,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //.setAction("Action", null).show();
                 Intent i = new Intent(MainActivity.this,Affichage.class);
                 startActivity(i);
             }
